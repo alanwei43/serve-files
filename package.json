@@ -1,19 +1,25 @@
 {
   "name": "@js-core/serve-files",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.7",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "rm -rf .next && next build && node scripts/build.mjs",
+    "build": "next build && node scripts/build.mjs",
     "start": "next start",
     "lint": "next lint",
-    "publib": "node scripts/publish.mjs"
+    "pubnpm": "node scripts/publish.mjs"
   },
   "dependencies": {
     "next": "14.0.4",
     "node-io-core": "^1.0.31",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "yargs": "^17.7.2"
+  },
+  "bin": {
+    "serve-files": "scripts/cli.mjs"
   },
   "devDependencies": {
     "@types/node": "^20",
