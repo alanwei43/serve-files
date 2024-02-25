@@ -1,7 +1,8 @@
-import { joinWithRootDirectory } from "@/library";
+import { joinWithRootDirectory, writeFile } from "@/library";
 import { existsSync } from "fs";
 import { stat, rm, } from "node:fs/promises"
 import { listFolderFiles } from "@/library/listFolderFiles";
+import { sep } from "path";
 
 // 下载文件
 export async function GET(request: Request) {
@@ -48,5 +49,26 @@ export async function DELETE(request: Request) {
     message: "invalid type"
   }, {
     status: 400
+  });
+}
+
+// 上传文件
+export async function PUT(request: Request) {
+  if (!request.body) {
+    return Response.json({}, { status: 400 });
+  }
+  const body = await request.json() as {
+    offset: number,
+    folder: string,
+    base64: string,
+    fileName: string,
+  };
+  const buf = Buffer.from(body.base64, "base64");
+  const dest = joinWithRootDirectory([body.folder || "", body.fileName].join(sep));
+  const len = await writeFile(dest, buf, body.offset);
+
+  return Response.json({
+    success: true,
+    length: len
   });
 }

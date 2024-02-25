@@ -5,6 +5,8 @@ import { DeleteFile } from "./DeleteFile";
 import { useState } from "react";
 import { HumanSize } from "./HumanSize";
 import { DownloadFile } from "./DownloadFile";
+import { UploadFile } from "./UploadFile";
+import { ParentFolderRender } from "./ParentFolderRender";
 
 export function FilesListRender(props: { files: Array<FileInfo>, folder: string }) {
   const { folder } = props;
@@ -15,18 +17,29 @@ export function FilesListRender(props: { files: Array<FileInfo>, folder: string 
     files.splice(index, 1);
     setFiles([...files]);
   }
+  const onUploadSuccess = (file: FileInfo) => {
+    files.push(file);
+    setFiles([...files]);
+  }
 
   const cellCls = "border p-2";
 
   return (<>
     <table className="border-collapse border border-slate-400">
-      <caption style={{ textAlign: "left" }}>
-        <b>Folder: {folder || "/"} </b>
+      <caption>
+        文件管理系统
       </caption>
       <thead>
-        {folder && <tr>
-          <td colSpan={3} className={cellCls}> <a href="../">返回上级目录</a> </td>
-        </tr>}
+        <tr>
+          <td colSpan={3} className={cellCls}>
+            <ParentFolderRender folder={folder} />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={3} className={cellCls}>
+            <UploadFile folder={folder} onSuccess={onUploadSuccess} />
+          </td>
+        </tr>
         <tr>
           <th className={cellCls}>文件</th>
           <th className={cellCls}>大小</th>
