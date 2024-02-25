@@ -7,7 +7,7 @@ const __dirname = dirname(__filename);
 const cwd = join(__dirname, "..", "..");
 
 
-export const command = 'start <port>'
+export const command = 'start [port]'
 export const desc = "start a files service"
 export const builder = {}
 export const handler = function (argv) {
