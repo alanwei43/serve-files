@@ -8,4 +8,5 @@ yargs(hideBin(process.argv))
   .scriptName("serve-files")
   .command(commands)
   .demandCommand()
+  .version()
   .parse();
