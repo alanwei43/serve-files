@@ -1,1 +1,1 @@
-export * from "./getRootDirectory";
+export * from "./joinWithRootDirectory";

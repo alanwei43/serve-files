@@ -1,10 +1,10 @@
 import { join } from "path";
 import { iterateFiles } from "node-io-core";
-import { getRootDirectory } from "./getRootDirectory";
+import { joinWithRootDirectory } from "./joinWithRootDirectory";
 
 export async function listFolderFiles(folder?: string) {
   const relativeRoot = folder || "";
-  const absRoot = join(getRootDirectory(), relativeRoot);
+  const absRoot = join(joinWithRootDirectory(), relativeRoot);
 
   const files = Array.from(iterateFiles(absRoot, {
     "deep": 1

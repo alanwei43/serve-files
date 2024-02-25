@@ -12,5 +12,9 @@ export default async function Page({ params }: { params: { slug?: Array<string> 
   }).join(sep);
   const files = await listFolderFiles(folder);
 
-  return <FilesListRender files={files} folder={folder} />
+  return <div className="md:container md:mx-auto">
+    <FilesListRender
+      files={files}
+      folder={folder} />
+  </div>;
 }
