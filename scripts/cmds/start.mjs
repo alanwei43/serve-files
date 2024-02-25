@@ -8,19 +8,10 @@ const __dirname = dirname(__filename);
 const cwd = join(__dirname, "..", "..");
 
 
-export const command = "start [port] <dir>"
-export const desc = "start a files service"
+export const command = "start [port] [dir]"
+export const desc = "启动文件服务"
 export const builder = {
-  port: {
-    type: "number",
-    required: true,
-    desc: "端口号"
-  },
-  dir: {
-    type: "string",
-    required: false,
-    desc: "伺服的目录"
-  }
+
 }
 export const handler = function (argv) {
   const { port, dir } = argv;
@@ -29,7 +20,10 @@ export const handler = function (argv) {
     return;
   }
 
-  writeFileSync(join(cwd, port), dir || cwd, { encoding: "utf-8" });
+  console.log("write config: ", join(cwd, port + ".json"));
+  writeFileSync(join(cwd, port + ".json"), JSON.stringify({
+    root: dir || cwd
+  }), { encoding: "utf-8" });
 
   fork(join(cwd, "server.js"), {
     env: {

@@ -1,13 +1,17 @@
 import { join } from "path";
+import { getAppConfig } from ".";
+
+
 export function joinWithRootDirectory(dest?: string) {
-  const cwd = process.cwd();
+  const { root } = getAppConfig();
+
   if (!dest) {
-    return cwd;
+    return root;
   }
-  const fullPath = join(cwd, dest);
-  if (fullPath.startsWith(cwd)) {
+  const fullPath = join(root, dest);
+  if (fullPath.startsWith(root)) {
     return fullPath;
   }
   // 出现越权操作
-  return process.cwd();
+  return root;
 }

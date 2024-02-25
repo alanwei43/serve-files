@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const fullPath = joinWithRootDirectory(file);
   const info = await stat(fullPath)
   if (info.isFile()) {
-    const data = createReadStream(fullPath);
+    const data = createReadStream(fullPath, {});
     res.setHeader("content-disposition", `attachment; filename="${basename(file)}"`);
     data.pipe(res);
     return;

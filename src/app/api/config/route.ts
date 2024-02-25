@@ -1,5 +1,12 @@
-export async function GET(request: Request) {
+import { getAppConfig } from "@/library";
+
+export async function GET() {
+  const config = getAppConfig();
   return Response.json({
-    folder: process.cwd()
+    ...config,
+    time: new Date().toLocaleString(),
+    // env: process.env
+  }, {
+    status: 500
   });
 }

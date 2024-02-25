@@ -1,10 +1,13 @@
-import Files from "./files/[[...slug]]/page";
+"use client"
+
+import { useEffect } from "react";
 
 export default function Page() {
+  useEffect(() => {
+    location.href = "/files";
+  }, []);
 
   return (
-    <div>
-      <Files params={{}} />
-    </div>
+    <div>loading...</div>
   );
 }
