@@ -4,6 +4,7 @@ import { FileInfo } from "@/library/listFolderFiles";
 import { DeleteFile } from "./DeleteFile";
 import { useState } from "react";
 import { HumanSize } from "./HumanSize";
+import { DownloadFile } from "./DownloadFile";
 
 export function FilesListRender(props: { files: Array<FileInfo>, folder: string }) {
   const { folder } = props;
@@ -19,8 +20,8 @@ export function FilesListRender(props: { files: Array<FileInfo>, folder: string 
 
   return (<>
     <table className="border-collapse border border-slate-400">
-      <caption>
-        <h3 className="h3">Folder: {folder || "/"} </h3>
+      <caption style={{ textAlign: "left" }}>
+        <b>Folder: {folder || "/"} </b>
       </caption>
       <thead>
         {folder && <tr>
@@ -43,7 +44,7 @@ export function FilesListRender(props: { files: Array<FileInfo>, folder: string 
           </td>
           <td className={cellCls}>
             <DeleteFile file={file} onSuccess={() => onDeleteSuccess(file)} /> &nbsp;
-            <span>下载</span>
+            <DownloadFile file={file} />
           </td>
         </tr>))}
       </tbody>

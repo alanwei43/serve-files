@@ -1,29 +1,26 @@
-import { iterateFiles } from "node-io-core";
 import { joinWithRootDirectory } from "@/library";
 import { existsSync } from "fs";
-import { stat, rm } from "node:fs/promises"
+import { stat, rm, } from "node:fs/promises"
+import { listFolderFiles } from "@/library/listFolderFiles";
 
 // 下载文件
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const folder = searchParams.get("folder") as string;
-  const root = joinWithRootDirectory(folder);
+  const folder = searchParams.get("file") as string;
 
-  const files = Array.from(iterateFiles(root)).map(file => ({
-    name: file.name,
-    isDirectory: file.state.isDirectory(),
-    isFile: file.state.isFile(),
-    path: file.relativePath,
-    size: file.state.size
-  }));
-  return Response.json(files);
+  const fullPath = joinWithRootDirectory(folder);
+  const info = await stat(fullPath)
+  if (info.isDirectory()) {
+    const files = await listFolderFiles(folder);
+    return Response.json(files, {})
+  }
+  return Response.json({}, { status: 400 });
 }
 
 // 删除文件或目录
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url);
   const file = searchParams.get("file") as string;
-  console.log("file: ", file);
   if (!file) {
     return Response.json({
       message: "file 参数不能为空"

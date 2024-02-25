@@ -4,7 +4,7 @@ import { joinWithRootDirectory } from "./joinWithRootDirectory";
 
 export async function listFolderFiles(folder?: string) {
   const relativeRoot = folder || "";
-  const absRoot = join(joinWithRootDirectory(), relativeRoot);
+  const absRoot = joinWithRootDirectory(relativeRoot);
 
   const files = Array.from(iterateFiles(absRoot, {
     "deep": 1
