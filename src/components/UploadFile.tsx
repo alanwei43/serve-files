@@ -23,7 +23,10 @@ export function UploadFile(props: { folder: string, onSuccess: (file: FileInfo) 
         size: file.size,
         isDirectory: false,
         isFile: true,
-        path: [folder, file.name].join("/")
+        path: [folder, file.name].join("/"),
+        atime: "now",
+        ctime: "now",
+        ext: ""
       });
     }
   }

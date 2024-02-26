@@ -12,7 +12,12 @@ export default async function Page({ params }: { params: { slug?: Array<string> 
   }).join(sep);
   const files = await listFolderFiles(folder);
 
-  return <div className="md:container md:mx-auto">
+  return <div style={{ padding: "5px 10px" }}>
+    {/* <div style={{ float: "right" }}>
+      <div>查看配置信息</div>
+      <div>运行目录: /data</div>
+      <div>启动时间: xoxxxx</div>
+    </div> */}
     <FilesListRender
       files={files}
       folder={folder} />

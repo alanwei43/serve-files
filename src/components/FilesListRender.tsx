@@ -23,6 +23,7 @@ export function FilesListRender(props: { files: Array<FileInfo>, folder: string 
   }
 
   const cellCls = "border p-2";
+  const headers = ["文件", "大小", "创建时间", "修改时间", "操作"];
 
   return (<>
     <table className="border-collapse border border-slate-400">
@@ -31,19 +32,17 @@ export function FilesListRender(props: { files: Array<FileInfo>, folder: string 
       </caption>
       <thead>
         <tr>
-          <td colSpan={3} className={cellCls}>
+          <td colSpan={headers.length} className={cellCls}>
             <ParentFolderRender folder={folder} />
           </td>
         </tr>
         <tr>
-          <td colSpan={3} className={cellCls}>
+          <td colSpan={headers.length} className={cellCls}>
             <UploadFile folder={folder} onSuccess={onUploadSuccess} />
           </td>
         </tr>
         <tr>
-          <th className={cellCls}>文件</th>
-          <th className={cellCls}>大小</th>
-          <th className={cellCls}>操作</th>
+          {headers.map(header => (<th key={header} className={cellCls}>{header}</th>))}
         </tr>
       </thead>
       <tbody>
@@ -55,12 +54,21 @@ export function FilesListRender(props: { files: Array<FileInfo>, folder: string 
           <td className={cellCls}>
             {file.isFile ? <HumanSize size={file.size} /> : "-"}
           </td>
+          <td className={cellCls}>{file.ctime}</td>
+          <td className={cellCls}>{file.atime}</td>
           <td className={cellCls}>
-            <DeleteFile file={file} onSuccess={() => onDeleteSuccess(file)} /> &nbsp;
+            <DeleteFile file={file} onSuccess={() => onDeleteSuccess(file)} />
             <DownloadFile file={file} />
           </td>
         </tr>))}
       </tbody>
+      <tfoot>
+        <tr>
+          <td colSpan={headers.length} className={cellCls}>
+            {files.length} 个文件, 总共 <HumanSize size={files.filter(f => f.isFile).map(f => f.size).reduce((sum, next) => sum + next, 0)} />
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </>);
 }

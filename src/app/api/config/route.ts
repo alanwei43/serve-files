@@ -5,7 +5,6 @@ export async function GET() {
   return Response.json({
     ...config,
     time: new Date().toLocaleString(),
-    // env: process.env
   }, {
     status: 500
   });

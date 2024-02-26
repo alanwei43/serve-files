@@ -14,7 +14,10 @@ export async function listFolderFiles(folder?: string) {
       isDirectory: file.state.isDirectory(),
       isFile: file.state.isFile(),
       path: join(relativeRoot, file.relativePath),
-      size: file.state.size
+      size: file.state.size,
+      ext: file.ext,
+      atime: file.state.atime.toLocaleString(),
+      ctime: file.state.ctime.toLocaleString()
     }));
   return files;
 }

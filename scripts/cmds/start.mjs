@@ -11,7 +11,11 @@ const cwd = join(__dirname, "..", "..");
 export const command = "start [port] [dir]"
 export const desc = "启动文件服务"
 export const builder = {
-
+  allowDelete: {
+    required: false,
+    type: "boolean",
+    desc: "是否允许删除文件或目录"
+  }
 }
 export const handler = function (argv) {
   const { port, dir } = argv;
@@ -22,7 +26,9 @@ export const handler = function (argv) {
 
   console.log("write config: ", join(cwd, port + ".json"));
   writeFileSync(join(cwd, port + ".json"), JSON.stringify({
-    root: dir || cwd
+    root: dir || cwd,
+    _cli_args: argv,
+    allowDelete: argv.allowDelete,
   }), { encoding: "utf-8" });
 
   fork(join(cwd, "server.js"), {
