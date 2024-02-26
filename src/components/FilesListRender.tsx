@@ -2,7 +2,7 @@
 
 import { FileInfo } from "@/library/listFolderFiles";
 import { DeleteFile } from "./DeleteFile";
-import { useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { HumanSize } from "./HumanSize";
 import { DownloadFile } from "./DownloadFile";
 import { UploadFile } from "./UploadFile";
@@ -48,8 +48,10 @@ export function FilesListRender(props: { files: Array<FileInfo>, folder: string 
       <tbody>
         {files.map(file => (<tr key={file.name} title={`文件路径为 ${file.path}`}>
           <td className={cellCls}>
-            {file.isDirectory && (<a href={`/files/${file.path}`}>{file.name}</a>)}
-            {file.isFile && <span>{file.name}</span>}
+            <div>
+              {file.isDirectory && (<a href={`/files/${file.path}`}>{file.name}</a>)}
+              {file.isFile && <span>{file.name}</span>}
+            </div>
           </td>
           <td className={cellCls}>
             {file.isFile ? <HumanSize size={file.size} /> : "-"}
