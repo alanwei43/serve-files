@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const info = await stat(fullPath)
   if (info.isFile()) {
     const data = createReadStream(fullPath, {});
-    res.setHeader("content-disposition", `attachment; filename="${basename(file)}"`);
+    res.setHeader("content-disposition", `attachment; filename="${encodeURIComponent(basename(file))}"`);
     data.pipe(res);
     return;
   }
