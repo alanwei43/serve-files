@@ -24,9 +24,9 @@ export function UploadFile(props: { folder: string, onSuccess: (file: FileInfo) 
         isDirectory: false,
         isFile: true,
         path: [folder, file.name].join("/"),
-        atime: "now",
-        ctime: "now",
-        ext: ""
+        atime: new Date().toLocaleString(),
+        ctime: new Date().toLocaleString(),
+        ext: file.name.split(".").slice(-1).join("")
       });
     }
   }
