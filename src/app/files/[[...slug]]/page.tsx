@@ -1,4 +1,4 @@
-import { FilesListRender } from "@/components/FilesListRender";
+import { FileSystemRender } from "@/components/FileSystemRender";
 import { listFolderFiles } from "@/library/listFolderFiles";
 import { sep } from "path";
 
@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { slug?: Array<string> 
       <div>运行目录: /data</div>
       <div>启动时间: xoxxxx</div>
     </div> */}
-    <FilesListRender
+    <FileSystemRender
       files={files}
       folder={folder} />
   </div>;

@@ -2,9 +2,10 @@
 import { useRef, useState } from "react";
 import { HumanSize } from "./HumanSize";
 import { FileInfo } from "@/library";
+import { OnUpdateFiles } from "./FileSystemRender";
 
-export function UploadFile(props: { folder: string, onSuccess: (file: FileInfo) => void }) {
-  const { folder, onSuccess } = props;
+export function UploadFile(props: { folder: string, onUpdateFiles: OnUpdateFiles }) {
+  const { folder, onUpdateFiles } = props;
   const [files, setFiles] = useState<Array<{ name: string, size: number }>>([]);
   const input = useRef<HTMLInputElement>(null);
 
@@ -16,9 +17,10 @@ export function UploadFile(props: { folder: string, onSuccess: (file: FileInfo) 
     if (!files || files.length === 0) {
       return;
     }
+    const appendFiles: FileInfo[] = [];
     for (const file of files) {
       await uploadFile(folder, file);
-      onSuccess({
+      appendFiles.push({
         name: file.name,
         size: file.size,
         isDirectory: false,
@@ -29,6 +31,9 @@ export function UploadFile(props: { folder: string, onSuccess: (file: FileInfo) 
         ext: file.name.split(".").slice(-1).join("")
       });
     }
+    onUpdateFiles(old => {
+      return [...old, ...appendFiles];
+    })
   }
 
   const onFilesChange = (files: FileList | null) => {
