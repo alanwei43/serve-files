@@ -2,6 +2,7 @@ import { fork } from "child_process";
 import { join, dirname } from "path";
 import { writeFileSync } from "fs";
 import { fileURLToPath } from "url";
+import { networkInterfaces } from "os";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,7 +25,10 @@ export const handler = function (argv) {
     return;
   }
 
-  console.log("write config: ", join(cwd, port + ".json"));
+  console.log("Write config to ", join(cwd, port + ".json"));
+  const listeners = getAllInterfaces().map(int => `  http://${int.ip}:${port}`).join("\n");
+  console.log(`Access URL:\n${listeners}\n`);
+
   writeFileSync(join(cwd, port + ".json"), JSON.stringify({
     root: dir || cwd,
     _cli_args: argv,
@@ -37,4 +41,21 @@ export const handler = function (argv) {
     },
     cwd: cwd
   });
+}
+function getAllInterfaces() {
+  const interfaces = networkInterfaces();
+  const ips = [];
+  for (const name in interfaces) {
+    const list = interfaces[name] || [];
+    for (const int of list) {
+      if (int.internal) {
+        continue;
+      }
+      ips.push({
+        name: name,
+        ip: int.address,
+      });
+    }
+  }
+  return ips;
 }
