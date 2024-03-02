@@ -1,12 +1,24 @@
-import { existsSync, readFileSync } from "fs";
-import { join } from "path";
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import pkg from "../../package.json";
+import { getAllInterfaces } from "./getAllInterfaces";
 
-const AppConfig = {
+const AppConfig: {
+  _initTime: string,
+  port: string,
+  root: string,
+  cwd: string,
+  allowDelete: boolean,
+  version: string,
+  ipList: ReturnType<typeof getAllInterfaces>
+} = {
   _initTime: "",
   port: "",
   root: "",
   cwd: "",
-  allowDelete: false
+  allowDelete: false,
+  version: pkg.version,
+  ipList: []
 };
 
 
@@ -16,8 +28,6 @@ export function getAppConfig(): typeof AppConfig {
       ...AppConfig
     };
   }
-
-  // TODO 增加本地网络IP信息
 
   AppConfig._initTime = new Date().toLocaleString();
   AppConfig.port = process.env.PORT + "";
@@ -31,6 +41,7 @@ export function getAppConfig(): typeof AppConfig {
 
   AppConfig.cwd = process.cwd();
   AppConfig.root = AppConfig.root || AppConfig.cwd;
+  AppConfig.ipList = getAllInterfaces();
 
   return { ...AppConfig };
 }

@@ -10,9 +10,9 @@ export function FilesListOptions(props: { options: FunctionOptions; setOptions: 
   };
 
   return <div>
-    <RadioList list={[{ name: "Details", value: "Details" }, { name: "Tiles", value: "Tiles" }]}
+    {/* <RadioList list={[{ name: "Details", value: "Details" }, { name: "Tiles", value: "Tiles" }]}
       value={options.viewType}
-      setValue={val => updateOptions("viewType", val)} />
+      setValue={val => updateOptions("viewType", val)} /> */}
   </div>;
 }
 

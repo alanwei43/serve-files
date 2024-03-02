@@ -1,6 +1,7 @@
+import { sep } from "node:path";
 import { FileSystemRender } from "@/components/FileSystemRender";
 import { listFolderFiles } from "@/library/listFolderFiles";
-import { sep } from "path";
+import { AppConfigRender } from "@/components/AppConfigRender";
 
 export default async function Page({ params }: { params: { slug?: Array<string> } }) {
   const folder = (params.slug || []).map(pathSep => {
@@ -12,12 +13,9 @@ export default async function Page({ params }: { params: { slug?: Array<string> 
   }).join(sep);
   const files = await listFolderFiles(folder);
 
-  return <div style={{ padding: "5px 10px" }}>
-    {/* <div style={{ float: "right" }}>
-      <div>查看配置信息</div>
-      <div>运行目录: /data</div>
-      <div>启动时间: xoxxxx</div>
-    </div> */}
+  return <div className="container-fluid">
+    <AppConfigRender />
+    <hr />
     <FileSystemRender
       files={files}
       folder={folder} />

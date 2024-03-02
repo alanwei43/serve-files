@@ -16,6 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link href={"/styles/bootstrap.css"} rel='stylesheet' />
+        <link href={"/styles/bootstrap-icons.css"} rel='stylesheet' />
+        <link href={"/styles/font-awesome.css"} rel='stylesheet' />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
