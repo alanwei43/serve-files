@@ -14,8 +14,7 @@ export function AppConfigRender() {
   return (<div>
     <div className="card">
       <div className="card-header">
-        配置信息
-        <span className="text-info text-sm" style={{ float: "right" }}>查看</span>
+        系统配置信息
       </div>
       <div className="card-body">
         {info.map(item => (<div key={item.name} className="row mb-1 justify-content-start">
@@ -23,7 +22,7 @@ export function AppConfigRender() {
           <div className="col-auto"> {item.value} </div>
         </div>))}
         <div className="row text-info">
-          <span className="col-4 col-sm-3 col-md-2">View Port:</span>
+          <span className="col-4 col-sm-3 col-md-2">View Port</span>
           <span className="col show-only-xs">Mobile</span>
           <span className="col show-only-sm">Landscape</span>
           <span className="col show-only-md">Tablets</span>
