@@ -30,6 +30,7 @@ export function ParentFolderRender(props: { folder: string, updateFiles: OnUpdat
         });
         return files;
       });
+      setDir("");
     }
   };
 

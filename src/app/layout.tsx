@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <link href={"/styles/bootstrap-icons.css"} rel='stylesheet' />
         <link href={"/styles/font-awesome.css"} rel='stylesheet' />
       </head>
