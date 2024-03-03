@@ -8,11 +8,11 @@ export function FileItemBlock(props: { file: FileInfo, onUpdateFiles: OnUpdateFi
   const { file, onUpdateFiles } = props;
 
   return (<div className="row align-items-center my-2">
-    <div className="col-12 col-sm-12 col-md-4 text-ellipsis text-primary">
+    <div className="col-12 col-sm-12 col-md-4 text-ellipsis">
       {/* 文件名 */}
       <span className="me-1"> <i className={`fa-solid fa-${file.isDirectory && "folder"} fa-${file.isFile && "file"}`}></i> </span>
-      {file.isDirectory && (<a href={`/files/${file.path}`}>{file.name}</a>)}
-      {file.isFile && <span>{file.name}</span>}
+      {file.isDirectory && (<a href={`/files/${file.path}`} className="text-secondary">{file.name}</a>)}
+      {file.isFile && <a href={`/api/download?file=${encodeURIComponent(file.path)}&view=1`} className="text-info" target="_blank">{file.name}</a>}
     </div>
     <div className="col-12 col-sm-12 col-md-8">
       <div className="row align-items-center">
