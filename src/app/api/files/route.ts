@@ -1,6 +1,6 @@
 import { joinWithRootDirectory, writeFile } from "@/library";
-import { existsSync } from "fs";
-import { stat, rm, } from "node:fs/promises"
+import { existsSync } from "node:fs";
+import { stat, rm, mkdir } from "node:fs/promises"
 import { listFolderFiles } from "@/library/listFolderFiles";
 import { sep } from "path";
 
@@ -70,5 +70,29 @@ export async function PUT(request: Request) {
   return Response.json({
     success: true,
     length: len
+  });
+}
+
+/**
+ * 创建目录
+ */
+export async function POST(request: Request) {
+  const body: { dir: string } = await request.json();
+  if (!body.dir) {
+    return Response.json({
+      success: false,
+      message: "目录为空"
+    });
+  }
+  const dest = joinWithRootDirectory(body.dir);
+  const result = await mkdir(dest, {
+    recursive: true
+  });
+  return Response.json({
+    success: true,
+    result: {
+      abs: result,
+      relative: dest
+    }
   });
 }

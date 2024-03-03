@@ -64,7 +64,7 @@ export function UploadFile(props: { folder: string, onUpdateFiles: OnUpdateFiles
 
   return (<div className="row mb-3">
     <div className="col-12 mb-1">
-      <div className="input-group">
+      <div className="input-group input-group-sm">
         <input className="form-control"
           type="file"
           ref={input}

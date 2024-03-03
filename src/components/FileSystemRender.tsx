@@ -7,6 +7,7 @@ import { UploadFile } from "./UploadFile";
 import { ParentFolderRender } from "./ParentFolderRender";
 import { FilesListContainer } from "./FilesListContainer";
 import { FilesListOptions, type FunctionOptions } from "./FilesListOptions";
+import { sortByType } from "@/library/sort";
 
 export function FileSystemRender(props: { files: Array<FileInfo>, folder: string }) {
   const { folder } = props;
@@ -15,7 +16,7 @@ export function FileSystemRender(props: { files: Array<FileInfo>, folder: string
     sortType: "Type",
     viewType: "Details"
   });
-  const [files, setFiles] = useState(props.files);
+  const [files, setFiles] = useState(sortByType(props.files));
 
   const onUpdateFiles: OnUpdateFiles = (update) => {
     setFiles(update([...files]));
@@ -25,7 +26,7 @@ export function FileSystemRender(props: { files: Array<FileInfo>, folder: string
     <div>
       <h3>文件管理系统</h3>
       <UploadFile folder={folder} onUpdateFiles={onUpdateFiles} />
-      <ParentFolderRender folder={folder} />
+      <ParentFolderRender folder={folder} updateFiles={onUpdateFiles} />
       <FilesListOptions options={options} setOptions={setOptions} />
       <FilesListContainer files={files} onUpdateFiles={onUpdateFiles} options={options} />
       <hr />
