@@ -24,7 +24,7 @@ export function FileSystemRender(props: { files: Array<FileInfo>, folder: string
 
   return (<>
     <div>
-      <h3>文件管理系统</h3>
+      <h4>文件列表</h4>
       <UploadFile folder={folder} onUpdateFiles={onUpdateFiles} />
       <ParentFolderRender folder={folder} updateFiles={onUpdateFiles} />
       <FilesListOptions options={options} setOptions={setOptions} />
@@ -32,7 +32,7 @@ export function FileSystemRender(props: { files: Array<FileInfo>, folder: string
       <hr />
       <div className="row">
         <div className="col">
-          {files.length} 个文件, 总共 <HumanSize size={files.filter(f => f.isFile).map(f => f.size).reduce((sum, next) => sum + next, 0)} />
+          {files.filter(f => f.isDirectory).length} 个目录, {files.filter(f => f.isFile).length} 个文件, 总共 <HumanSize size={files.filter(f => f.isFile).map(f => f.size).reduce((sum, next) => sum + next, 0)} />
         </div>
       </div>
     </div>

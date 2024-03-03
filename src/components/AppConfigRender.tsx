@@ -6,8 +6,8 @@ export function AppConfigRender() {
     { name: "初始化时间", value: config._initTime },
     { name: "服务器时间", value: new Date().toLocaleString() },
     { name: "端口号", value: config.port },
-    { name: "伺服目录", value: config.root },
-    { name: "应用目录", value: config.cwd },
+    { name: "管理目录", value: config.root },
+    { name: "安装目录", value: config.cwd },
     { name: "应用版本", value: config.version },
     { name: "访问地址", value: config.ipList.map(item => item.ip).join(", ") },
   ];

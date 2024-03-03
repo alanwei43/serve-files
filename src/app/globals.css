@@ -28,6 +28,7 @@ body {} */
   text-overflow: ellipsis;
 }
 
-.file-item:nth-child(odd) {
+.file-item:nth-child(even) {
+  border-radius: 10px;
   background-color: #eee;
 }
