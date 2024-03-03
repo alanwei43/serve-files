@@ -12,7 +12,10 @@ export async function uploadFile(folder: string, file: File, onProgress: (data: 
         folder: folder
       })
     });
-    const json: { success: boolean, length: number } = await request.json();
+    const json: { success: boolean, length: number } = await request.json().catch((ex) => ({
+      success: false,
+      message: ex + ""
+    }));
     onProgress({
       ...json,
       blocks: {
@@ -50,6 +53,7 @@ function readAsBase64(data: Blob): Promise<string> {
 
 export type OnProgressValue = {
   success: boolean
+  message?: string
   length: number
   blocks: {
     total: number

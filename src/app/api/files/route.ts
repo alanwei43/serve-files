@@ -65,12 +65,20 @@ export async function PUT(request: Request) {
   };
   const buf = Buffer.from(body.base64, "base64");
   const dest = joinWithRootDirectory([body.folder || "", body.fileName].join(sep));
-  const len = await writeFile(dest, buf, body.offset);
+  try {
+    const len = await writeFile(dest, buf, body.offset);
 
-  return Response.json({
-    success: true,
-    length: len
-  });
+    return Response.json({
+      success: true,
+      length: len
+    });
+  } catch (err) {
+    console.error(err);
+    return Response.json({
+      success: false,
+      message: `文件上传失败 ${err}`
+    })
+  }
 }
 
 /**

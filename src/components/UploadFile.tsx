@@ -31,6 +31,9 @@ export function UploadFile(props: { folder: string, onUpdateFiles: OnUpdateFiles
           match.progress = progress.blocks.percent;
           setSelectedFiles([...selectedFiles]);
         }
+        if (!progress.success) {
+          alert("文件上传失败 " + progress.message);
+        }
       });
       appendFiles.push({
         name: file.name,
