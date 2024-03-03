@@ -28,8 +28,11 @@ export function FileSystemRender(props: { files: Array<FileInfo>, folder: string
       <ParentFolderRender folder={folder} />
       <FilesListOptions options={options} setOptions={setOptions} />
       <FilesListContainer files={files} onUpdateFiles={onUpdateFiles} options={options} />
-      <div>
-        {files.length} 个文件, 总共 <HumanSize size={files.filter(f => f.isFile).map(f => f.size).reduce((sum, next) => sum + next, 0)} />
+      <hr />
+      <div className="row">
+        <div className="col">
+          {files.length} 个文件, 总共 <HumanSize size={files.filter(f => f.isFile).map(f => f.size).reduce((sum, next) => sum + next, 0)} />
+        </div>
       </div>
     </div>
   </>);

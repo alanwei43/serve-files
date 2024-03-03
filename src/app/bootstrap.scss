@@ -16,62 +16,62 @@ $grid-breakpoints: (
 
 @import "bootstrap/scss/bootstrap.scss";
 
-.show-on-xs {
+.show-only-xs {
   display: none;
 }
 
 @include media-breakpoint-down(sm) {
-  .show-on-xs {
+  .show-only-xs {
     display: block;
   }
 }
 
-.show-on-sm {
+.show-only-sm {
   display: none;
 }
 
 @include media-breakpoint-between(sm, md) {
-  .show-on-sm {
+  .show-only-sm {
     display: block;
   }
 }
 
-.show-on-md {
+.show-only-md {
   display: none;
 }
 
 @include media-breakpoint-between(md, lg) {
-  .show-on-md {
+  .show-only-md {
     display: block;
   }
 }
 
-.show-on-lg {
+.show-only-lg {
   display: none;
 }
 
 @include media-breakpoint-between(lg, xl) {
-  .show-on-lg {
+  .show-only-lg {
     display: block;
   }
 }
 
-.show-on-xl {
+.show-only-xl {
   display: none;
 }
 
 @include media-breakpoint-between(xl, xxl) {
-  .show-on-xl {
+  .show-only-xl {
     display: block;
   }
 }
 
-.show-on-xxl {
+.show-only-xxl {
   display: none;
 }
 
 @include media-breakpoint-up(xxl) {
-  .show-on-xxl {
+  .show-only-xxl {
     display: block;
   }
 }

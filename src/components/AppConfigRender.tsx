@@ -24,12 +24,12 @@ export function AppConfigRender() {
         </div>))}
         <div className="row text-info">
           <span className="col-4 col-sm-3 col-md-2">View Port:</span>
-          <span className="col show-on-xs">Mobile</span>
-          <span className="col show-on-sm">Landscape</span>
-          <span className="col show-on-md">Tablets</span>
-          <span className="col show-on-lg">Desktop</span>
-          <span className="col show-on-xl">Extral large</span>
-          <span className="col show-on-xxl">Double extral lage</span>
+          <span className="col show-only-xs">Mobile</span>
+          <span className="col show-only-sm">Landscape</span>
+          <span className="col show-only-md">Tablets</span>
+          <span className="col show-only-lg">Desktop</span>
+          <span className="col show-only-xl">Extral large</span>
+          <span className="col show-only-xxl">Double extral lage</span>
         </div>
       </div>
     </div>
