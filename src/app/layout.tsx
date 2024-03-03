@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+// import { Inter } from 'next/font/google'
+import "./bootstrap.scss";
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: "Files Service",
@@ -17,11 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href={"/styles/bootstrap.css"} rel='stylesheet' />
         <link href={"/styles/bootstrap-icons.css"} rel='stylesheet' />
         <link href={"/styles/font-awesome.css"} rel='stylesheet' />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body style={{ marginTop: "1em" }}>{children}</body>
     </html>
   )
 }

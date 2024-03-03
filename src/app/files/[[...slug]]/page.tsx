@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug?: Array<string> 
   }).join(sep);
   const files = await listFolderFiles(folder);
 
-  return <div className="container-fluid">
+  return <div className="container-xxl">
     <AppConfigRender />
     <hr />
     <FileSystemRender

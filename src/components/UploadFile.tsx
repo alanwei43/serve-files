@@ -19,6 +19,9 @@ export function UploadFile(props: { folder: string, onUpdateFiles: OnUpdateFiles
     if (!files || files.length === 0) {
       return;
     }
+    if (isUploading) {
+      return;
+    }
     setIsUploading(true);
     const appendFiles: FileInfo[] = [];
     for (const file of files) {
@@ -26,6 +29,7 @@ export function UploadFile(props: { folder: string, onUpdateFiles: OnUpdateFiles
         const match = selectedFiles.find(f => f.name === file.name);
         if (match) {
           match.progress = progress.blocks.percent;
+          setSelectedFiles([...selectedFiles]);
         }
       });
       appendFiles.push({
@@ -58,26 +62,39 @@ export function UploadFile(props: { folder: string, onUpdateFiles: OnUpdateFiles
     setSelectedFiles(list);
   }
 
-  return (<div>
-    <div>
-      <label className="form-label">选择文件：
-        <input className="form-control form-control-sm" type="file" ref={input} multiple onChange={e => onFilesChange(e.target.files)} />
-      </label>
+  return (<div className="row mb-3">
+    <div className="col-12 mb-1">
+      <div className="input-group">
+        <input className="form-control"
+          type="file"
+          ref={input}
+          multiple
+          onChange={e => onFilesChange(e.target.files)} />
+        <label className="input-group-text" onClick={doUpload}>点击上传</label>
+      </div>
+      <div>
+
+      </div>
     </div>
-    {selectedFiles.length > 0 && <div>
-      <span>文件列表: </span>
-      <ul className="list-group">
-        {selectedFiles.map(file => <li key={file.name} className={`list-group-item ${file.progress === 1 && 'active'}`}>
-          <span>{file.name}</span>
-          <div style={{ float: "right" }}>
-            <HumanSize size={file.size} />
+    {selectedFiles.length > 0 && <div className="col-12 mt-2">
+      <ul className="list-group list-group-numbered">
+        {selectedFiles.map(file => <li key={file.name}
+          className={`list-group-item d-flex justify-content-between align-items-start`}>
+          <div className="ms-2 me-auto" style={{ width: "100%" }}>
+            <div style={{ fontSize: ".7em" }}>{file.name}<br /><HumanSize size={file.size} /></div>
+            <div className="progress" style={{ height: "5px" }}>
+              <div className="progress-bar" style={{ width: `${(file.progress * 100).toFixed(2)}%` }}></div>
+            </div>
           </div>
+          {file.progress === 1
+            && <span className="badge text-bg-primary rounded-pill">
+              <i className="bi bi-check"></i>
+            </span>}
+          {file.progress > 0 && file.progress < 1 && <div className="spinner-border spinner-border-sm text-info">
+            <span className="visually-hidden">Loading...</span>
+          </div>}
         </li>)}
       </ul>
-      <button disabled={isUploading}
-        style={{ margin: "10px 0" }}
-        className="btn btn-primary btn-sm btn-xs"
-        onClick={doUpload}>开始上传</button>
     </div>}
   </div>)
 }

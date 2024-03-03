@@ -22,5 +22,5 @@ export function DeleteFile(props: { file: FileInfo, onSuccess: () => void }) {
     // const response = await request.json();
   };
 
-  return (<span onClick={doDelete}>删除</span>);
+  return (<span className="btn btn-danger btn-sm" onClick={doDelete}>删除</span>);
 }

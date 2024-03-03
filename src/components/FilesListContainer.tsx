@@ -26,8 +26,8 @@ export function FilesListContainer(props: {
     onUpdateFiles(() => list);
   }, [files, onUpdateFiles, options.sortType]);
 
-  return (<div>
-    {files.map(file => <div key={file.name} style={{ display: "inline-block", border: "1px solid #aaa", margin: "5px", padding: "5px" }}>
+  return (<div className="row mt-3">
+    {files.map(file => <div key={file.name} className="col-12 file-item">
       <FileItemBlock file={file} onUpdateFiles={onUpdateFiles} />
     </div>)}
   </div>)

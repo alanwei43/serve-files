@@ -1,0 +1,77 @@
+$success: #7952b3;
+$grid-breakpoints: (
+  // No media query for `xs` since this is the default in Bootstrap
+  xs: 0,
+  // Small devices (landscape phones, 576px and up)
+  sm: 576px,
+  // Medium devices (tablets, 768px and up)
+  md: 768px,
+  // Large devices (desktops, 992px and up)
+  lg: 992px,
+  // X-Large devices (large desktops, 1200px and up)
+  xl: 1200px,
+  // XX-Large devices (larger desktops, 1400px and up)
+  xxl: 1400px
+);
+
+@import "bootstrap/scss/bootstrap.scss";
+
+.show-on-xs {
+  display: none;
+}
+
+@include media-breakpoint-down(sm) {
+  .show-on-xs {
+    display: block;
+  }
+}
+
+.show-on-sm {
+  display: none;
+}
+
+@include media-breakpoint-between(sm, md) {
+  .show-on-sm {
+    display: block;
+  }
+}
+
+.show-on-md {
+  display: none;
+}
+
+@include media-breakpoint-between(md, lg) {
+  .show-on-md {
+    display: block;
+  }
+}
+
+.show-on-lg {
+  display: none;
+}
+
+@include media-breakpoint-between(lg, xl) {
+  .show-on-lg {
+    display: block;
+  }
+}
+
+.show-on-xl {
+  display: none;
+}
+
+@include media-breakpoint-between(xl, xxl) {
+  .show-on-xl {
+    display: block;
+  }
+}
+
+.show-on-xxl {
+  display: none;
+}
+
+@include media-breakpoint-up(xxl) {
+  .show-on-xxl {
+    display: block;
+  }
+}

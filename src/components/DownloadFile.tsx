@@ -7,5 +7,5 @@ export function DownloadFile(props: { file: FileInfo }) {
   }).toString();
   const downloadLink = `/api/download?${query}`;
 
-  return (<> {file.isFile && <a href={downloadLink} target="_blank">下载</a>}</>);
+  return (<> {file.isFile && <a href={downloadLink} target="_blank" className="btn btn-info btn-sm" style={{ color: "white" }}>下载</a>}</>);
 }
