@@ -1,6 +1,6 @@
 "use client"
 import { useRef, useState } from "react";
-import { HumanSize } from "./HumanSize";
+import { HumanSize } from "./utility/HumanSize";
 import { FileInfo } from "@/library";
 import { OnUpdateFiles } from "./FileSystemRender";
 import { uploadFile } from "../library/uploadFile";
@@ -66,17 +66,14 @@ export function UploadFile(props: { folder: string, onUpdateFiles: OnUpdateFiles
   }
 
   return (<div className="row mb-3">
-    <div className="col-12 mb-1">
+    <div className="col-12 mb-1 d-none d-lg-block">
       <div className="input-group input-group-sm">
         <input className="form-control"
           type="file"
           ref={input}
           multiple
-          onChange={e => onFilesChange(e.target.files)} />
-        <label className="input-group-text" onClick={doUpload}>点击上传</label>
-      </div>
-      <div>
-
+          onChange={e => onFilesChange(e.target.files)}
+          id="file-upload" />
       </div>
     </div>
     {selectedFiles.length > 0 && <div className="col-12 mt-2">
@@ -98,6 +95,9 @@ export function UploadFile(props: { folder: string, onUpdateFiles: OnUpdateFiles
           </div>}
         </li>)}
       </ul>
+      <div>
+        <span className="btn btn-sm btn-primary my-2" onClick={doUpload}>点击上传</span>
+      </div>
     </div>}
   </div>)
 }

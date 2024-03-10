@@ -12,7 +12,7 @@ export function AppConfigRender() {
     { name: "访问地址", value: config.ipList.map(item => item.ip).join(", ") },
   ];
   return (<div>
-    <div className="card">
+    <div id="app-config" className="card">
       <div className="card-header">
         系统配置信息
       </div>

@@ -1,0 +1,12 @@
+.float-quick {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 15px;
+  /* background-color: #0094ff99; */
+  border-radius: 10px;
+}
+
+.float-quick i {
+  color: white;
+}

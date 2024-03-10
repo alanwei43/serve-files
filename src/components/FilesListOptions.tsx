@@ -1,6 +1,6 @@
 "use client";
 import { OnChangeUpdate } from "@/types";
-import { RadioList } from "./RadioList";
+import { RadioList } from "./utility/RadioList";
 
 export function FilesListOptions(props: { options: FunctionOptions; setOptions: (options: FunctionOptions) => void; }) {
   const { options, setOptions } = props;

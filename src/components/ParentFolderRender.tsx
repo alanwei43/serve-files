@@ -4,6 +4,7 @@ import { OnUpdateFiles } from "./FileSystemRender";
 export function ParentFolderRender(props: { folder: string, updateFiles: OnUpdateFiles }) {
   const { folder, updateFiles } = props;
   const [dir, setDir] = useState("");
+  
   const createFolder = async () => {
     if (!dir) {
       return;

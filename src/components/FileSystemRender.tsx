@@ -2,7 +2,7 @@
 
 import { FileInfo } from "@/library/listFolderFiles";
 import { useState } from "react";
-import { HumanSize } from "./HumanSize";
+import { HumanSize } from "./utility/HumanSize";
 import { UploadFile } from "./UploadFile";
 import { ParentFolderRender } from "./ParentFolderRender";
 import { FilesListContainer } from "./FilesListContainer";
@@ -24,7 +24,7 @@ export function FileSystemRender(props: { files: Array<FileInfo>, folder: string
 
   return (<>
     <div>
-      <h4>文件列表</h4>
+      <h4>文件管理</h4>
       <UploadFile folder={folder} onUpdateFiles={onUpdateFiles} />
       <ParentFolderRender folder={folder} updateFiles={onUpdateFiles} />
       <FilesListOptions options={options} setOptions={setOptions} />
