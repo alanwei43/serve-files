@@ -16,5 +16,11 @@ export function Dialog(props: {
     show ? dialog.current.showModal() : dialog.current.close();
   }, [show]);
 
-  return (<dialog ref={dialog} style={style} className={props.class}> {children} </dialog>)
+  return (<dialog ref={dialog} style={{
+    ...style || {},
+    outline: "none",
+    borderRadius: "10px",
+    border: "1px solid #ddd",
+    boxShadow: "#eee 0px 0px 8px 8px"
+  }} className={props.class} > {children} </dialog >)
 }

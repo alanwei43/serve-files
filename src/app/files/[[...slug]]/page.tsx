@@ -14,10 +14,10 @@ export default async function Page({ params }: { params: { slug?: Array<string> 
   }).join(sep);
   const files = await listFolderFiles(folder);
 
-  return <div className="container-xxl" style={{ position: "relative" }}>
+  return <>
     <FloatQuickFunctions appConfig={<AppConfigRender />} />
     <FileSystemRender
       files={files}
       folder={folder} />
-  </div>;
+  </>;
 }

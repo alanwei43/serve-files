@@ -27,7 +27,7 @@ function AppConfig(props: { configInfo: React.ReactNode }) {
     <span className="btn btn-sm btn-primary" onClick={() => setShowConfig(true)}>
       <i className="fa-solid fa-circle-info"></i>
     </span>
-    <Dialog show={showConfig} class="container-xxl" style={{ border: "1px solid #aaa", boxShadow: "#aaa 0px 0px 8px 8px" }}>
+    <Dialog show={showConfig} class="container-xxl">
       {props.configInfo}
       <div className="my-2 text-center">
         <span className="btn btn-warning text-white" onClick={() => setShowConfig(false)}>关闭</span>

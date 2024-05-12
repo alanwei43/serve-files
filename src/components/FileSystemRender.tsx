@@ -24,7 +24,6 @@ export function FileSystemRender(props: { files: Array<FileInfo>, folder: string
 
   return (<>
     <div>
-      <h4>文件管理</h4>
       <UploadFile folder={folder} onUpdateFiles={onUpdateFiles} />
       <ParentFolderRender folder={folder} updateFiles={onUpdateFiles} />
       <FilesListOptions options={options} setOptions={setOptions} />
